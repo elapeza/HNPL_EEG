@@ -28,7 +28,7 @@ for j=1:size(X,2)
 end
 
 if(sum(isnan(class))~=0)
-    disp(sprintf('NaNƒf[ƒ^‚ª‘¶İ‚µ‚Ä‚¢‚Ü‚µ‚½D\n'));
+    disp(sprintf('NaNãƒ‡ãƒ¼ã‚¿ãŒå­˜åœ¨ã—ã¦ã„ã¾ã—ãŸï¼\n'));
     class(isnan(class))=0;
 end
 end
