@@ -15,7 +15,7 @@ for j=1:size(X,2)
     end
 end
 
-    %Y(i,:)=median(tmp);   %’†‰›’l‚Æ‚éê‡
-    %Y(i,:)=mean(tmp); %•½‹Ï’l‚Æ‚éê‡
-    %Y(i,:)=var(tmp); %RMS‚Å‚Ío‚È‚¢D•ªU
+    %Y(i,:)=median(tmp);   %ä¸­å¤®å€¤ã¨ã‚‹å ´åˆ
+    %Y(i,:)=mean(tmp); %å¹³å‡å€¤ã¨ã‚‹å ´åˆ
+    %Y(i,:)=var(tmp); %RMSã§ã¯å‡ºãªã„ï¼åˆ†æ•£
     %Y(i,:)=norm(tmp)/sqrt(length(tmp));
