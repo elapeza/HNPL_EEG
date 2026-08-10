@@ -7,3 +7,28 @@ Significant changes have been made to allow for the main processing script to wo
 The most notable changes are going from BrainVision to OTBiolab and adjusting the EEG cap to be accurate.
 
 This code is intended to be used with EEGLAB and MATLAB.
+
+
+Additional notes:
+
+In order for this to work correctly, it might be necessary to install some EEGLAB plugins through their GitHub pages, as the install from within EEGLAB is out of date.
+* Clean_rawdata
+* Zapline Plus
+
+
+All recommended plugins for this to work properly include:
+* AMICA
+* Cleanline
+* Fieldtrip-Lite
+* ICLabel
+* LIMO
+* MARA
+* Mobilab
+* PowPowCat
+* PrepPipeline
+* clean_rawdata
+* dipfit
+* firfilt
+* fullRankAveRef
+* PostAmicaUtility
+* zapline-plus
