@@ -32,3 +32,8 @@ All recommended plugins for this to work properly include:
 * fullRankAveRef
 * PostAmicaUtility
 * zapline-plus
+
+
+MATLAB add-ons to also install
+* statistics
+* signal processing 
