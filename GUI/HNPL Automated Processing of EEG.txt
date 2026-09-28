@@ -1,0 +1,35 @@
+HNPL Automated Processing of EEG (APE)
+Code adapted by Elijah C. Lapeza based on script by Nathan A. Baune, PhD.
+Principal Investigator: Minoru Shinohara, PhD, FACSM
+Human Neuromuscular Physiology Lab
+---
+Contact:
+Elijah Lapeza
+email: elapeza3@gatech.edu
+---
+Current Version: 1.1.0
+Most Recent Release Date: 9/25/2026
+---
+Version Log
+
+Version number: 1.1.0
+Release Date: 9/25/2026
+Changelog:
+- Added Details tab to GUI to display details about GUI install
+- Implemented changelog document to be automatically imported to Details tab
+- Changed window title
+- Fixed bug where epoch window did not update across tabs.
+- Adjusted automatic dataset search to begin upon opening based on default folder (active folder in MATLAB)
+- Split 'PostICA' function into Post-ICA merging of components onto datasets (PostICA) and epoching (Epoch) in order for ERPLAB compatibility
+- Reduced tabs to be simpler. New tabs are: Initialization, Import Data, Epoch, Trial Rejection, Export, Details. Trial Rejection and Export remain placeholders.
+- changed MATLAB call command to be eegapp instead of EEG_Processing_GUI for ease of access (EEGLAB does not need to be loaded first. this GUI will open it for you).
+
+Version number: 1.0.0
+Release date: 8/19/2026
+Changelog:
+- Adjusted original script to construct EEGLAB structures from converted .otb+ files
+- Implemented ECG artifact subtraction
+- Adjusted batch processing to keep datasets separate
+- Designed GUI wrapper in MATLAB to make processing datasets easier
+- broke script up into separate function files to be called by GUI
+- Not all tabs have full functionality
