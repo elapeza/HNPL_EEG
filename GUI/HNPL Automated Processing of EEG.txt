@@ -1,5 +1,5 @@
 HNPL Automated Processing of EEG (APE)
-Code adapted by Elijah C. Lapeza based on script by Nathan A. Baune, PhD.
+Code adapted by Elijah C. Lapeza based on script by Nathan A. Baune, PhD of Neural Plasticity Research Lab (NPRL)
 Principal Investigator: Minoru Shinohara, PhD, FACSM
 Human Neuromuscular Physiology Lab
 ---
@@ -7,10 +7,19 @@ Contact:
 Elijah Lapeza
 email: elapeza3@gatech.edu
 ---
-Current Version: 1.1.0
-Most Recent Release Date: 9/25/2026
+Current Version: 1.2.0
+Most Recent Release Date: 11/5/2026
 ---
-Version Log
+Version Log number: 1.2.0
+Release Date: 11/05/2026
+Changelog:
+- Fixed bug where selecting files on initialization tab would cause GUI to become inactive window
+- Added feature to allow for resuming analysis steps after closing and reopening GUI by manually reopening datasets in EEGLAB and selecting the desired step on new Advanced tab. Resume step buttons bypass safe guards to prevent skipping steps in the processing order.
+- Added toggle to allow datasets without ECG to be processed (Advanced tab)
+- Added toggle to allow datasets without stimulation event markers to be processed (Advanced tab)
+- Import data functionality improved to allow for registering bilateral stimulation recordings. In future updates, this will likely be streamlined to read from a config file to account for version drift and changing setup connections, as OTBiolab's conversion may export auxiliary channels in a strange order. Exact setup currently undecided and may be either .txt or .mat
+- changed initialization check back end method. Functionality should be unchanged.
+- Various quality of life and visual improvements
 
 Version number: 1.1.0
 Release Date: 9/25/2026
