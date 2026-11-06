@@ -13,7 +13,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-function [dlgbox, signal] = openOTBplus(path, file, dialog)
+function [signal] = openOTBplus(path, file, dialog)
 %Reads files of type OTB+, extrapolating the information on the signal,
 %in turn uses the xml2struct function to read file.xml and allocate them in an easily readable Matlab structure.
 % Isn't possible to read OTB files because the internal structure of these
@@ -193,66 +193,4 @@ end
 
 rmdir('tmpopen','s');
 
-if dialog == 1
-    % Set the configuration
-    dlgbox = Quattrodlg;
-    dlgbox.EditField_nchan.Value = size(signal.data,1);
-    
-    if find(idxa == 1)
-        dlgbox.CheckBox_S1.Value = 1;
-        dlgbox.CheckBox_S1.Visible = 'off';
-        dlgbox.Splitter1Panel.Enable = 'on';
-        dlgbox.Lamp_S1.Color = 'Green';
-        dlgbox.DropDown_S1.Value = signal.gridname{idxa == 1};
-        dlgbox.EditField_S1.Value = signal.muscle{idxa == 1};
-    end
-    
-    if find(idxa == 2)
-        dlgbox.CheckBox_S2.Value = 1;
-        dlgbox.CheckBox_S2.Visible = 'off';
-        dlgbox.Splitter2Panel.Enable = 'on';
-        dlgbox.Lamp_S2.Color = 'Green';
-        dlgbox.DropDown_S2.Value = signal.gridname{idxa == 2};
-        dlgbox.EditField_S2.Value = signal.muscle{idxa == 2};
-    end
-    
-    if find(idxa == 3)
-        dlgbox.CheckBox_M1.Value = 1;
-        dlgbox.CheckBox_M1.Visible = 'off';
-        dlgbox.MI1Panel.Enable = 'on';
-        dlgbox.Lamp_M1.Color = 'Green';
-        dlgbox.DropDown_M1.Value = signal.gridname{idxa == 3};
-        dlgbox.EditField_M1.Value = signal.muscle{idxa == 3};
-    end
-    
-    if find(idxa == 4)
-        dlgbox.CheckBox_M2.Value = 1;
-        dlgbox.CheckBox_M2.Visible = 'off';
-        dlgbox.MI2Panel.Enable = 'on';
-        dlgbox.Lamp_M2.Color = 'Green';
-        dlgbox.DropDown_M2.Value = signal.gridname{idxa == 4};
-        dlgbox.EditField_M2.Value = signal.muscle{idxa == 4};
-    end
-    
-    if find(idxa == 5)
-        dlgbox.CheckBox_M3.Value = 1;
-        dlgbox.CheckBox_M3.Visible = 'off';
-        dlgbox.MI3Panel.Enable = 'on';
-        dlgbox.Lamp_M3.Color = 'Green';
-        dlgbox.DropDown_M3.Value = signal.gridname{idxa == 5};
-        dlgbox.EditField_M3.Value = signal.muscle{idxa == 5};
-    end
-    
-    if find(idxa == 6)
-        dlgbox.CheckBox_M4.Value = 1;
-        dlgbox.CheckBox_M4.Visible = 'off';
-        dlgbox.MI4Panel.Enable = 'on';
-        dlgbox.Lamp_M4.Color = 'Green';
-        dlgbox.DropDown_M4.Value = signal.gridname{idxa == 6};
-        dlgbox.EditField_M4.Value = signal.muscle{idxa == 6};
-    end    
-else
-    dlgbox = [];
-end
-dlgbox = [];
 end

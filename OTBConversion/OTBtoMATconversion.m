@@ -4,7 +4,7 @@
 fpath = strcat(uigetdir,'/'); 
 fname = ls([fpath '*.otb+']);
 for i= 1:height(fname)
-    [~,signal_new]=openOTBplusold(fpath,fname(i,:),1);
+    [signal_new]=openOTBplusold(fpath,fname(i,:),1);
     lsamp = 2048;
     %time series for rawdata
     time_raw = 1/signal_new.fsamp:1/signal_new.fsamp:size(signal_new.data,2)/signal_new.fsamp;
