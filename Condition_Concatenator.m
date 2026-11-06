@@ -3,32 +3,61 @@ ALLEEG_conversion = struct2table(ALLEEG);
 condition_order =ALLEEG_conversion.condition;
 numSets = 1:length(ALLEEG);
 
-
+% logical arrays for order of conditions 
 ShamSetsLogic = contains(condition_order, 'Sham');
 StimSetsLogic = contains(condition_order,'Stim');
 CtrlSetsLogic = contains(condition_order, 'Control');
+BistSetsLogic = contains(condition_order, 'Bilateral');
+% indexes of each condition
 ShamSetsidx = numSets(ShamSetsLogic);
 StimSetsidx = numSets(StimSetsLogic);
 CtrlSetsidx = numSets(CtrlSetsLogic);
+BistSetsidx = numsets(BistSetsLogic);
 
-%%
+%% Create merged sets per each condition.
+% To do: confirm not having any bilateral sets does not error.
+
 % mergedEEG = pop_mergeset(ALLEEG, 1+length(ALLEEG)-length(filename):numel(ALLEEG), 0);
 
 ShamSets = pop_mergeset(ALLEEG, ShamSetsidx, 1);
 StimSets = pop_mergeset(ALLEEG, StimSetsidx, 1);
 CtrlSets = pop_mergeset(ALLEEG, CtrlSetsidx, 1);
+BistSets = pop_mergeset(ALLEEG, BistSetsidx, 1);
 
 %%
 %ShamSets_num = (ALLEEG.condition,'Sham');
 
-[ALLEEG EEG CURRENTSET] = pop_newset(ALLEEG, ShamSets, CURRENTSET,'gui','off','savenew',['ShamSets_noEpoch'],'setname','ShamSets' );
-[ALLEEG EEG CURRENTSET] = pop_newset(ALLEEG, StimSets, CURRENTSET,'gui','off','savenew',['StimSets_noEpoch'],'setname','StimSets');
-[ALLEEG EEG CURRENTSET] = pop_newset(ALLEEG, CtrlSets, CURRENTSET,'gui','off','savenew',['CtrlSets_noEpoch'],'setname','CtrlSets');
+% Save each merged set to set files. 
+% Added logic to identify if the merged sets have been epoched
+% If intended use of set is for ERPLAB, confirm data set is not epoched
 
+if isempty(ShamSets.epoch)
+    [ALLEEG EEG CURRENTSET] = pop_newset(ALLEEG, ShamSets, CURRENTSET,'gui','off','savenew',['ShamSets_noEpoch'],'setname','ShamSets');
+else
+    [ALLEEG EEG CURRENTSET] = pop_newset(ALLEEG, ShamSets, CURRENTSET,'gui','off','savenew',['ShamSets_Epoched'],'setname','ShamSets');
+end
+
+if isempty(StimSets.epoch)
+    [ALLEEG EEG CURRENTSET] = pop_newset(ALLEEG, StimSets, CURRENTSET,'gui','off','savenew',['StimSets_noEpoch'],'setname','StimSets');
+else
+    [ALLEEG EEG CURRENTSET] = pop_newset(ALLEEG, StimSets, CURRENTSET,'gui','off','savenew',['StimSets_Epoched'],'setname','StimSets');
+end
+
+if isempty(CtrlSets.epoch)
+    [ALLEEG EEG CURRENTSET] = pop_newset(ALLEEG, CtrlSets, CURRENTSET,'gui','off','savenew',['CtrlSets_noEpoch'],'setname','CtrlSets');
+else
+    [ALLEEG EEG CURRENTSET] = pop_newset(ALLEEG, CtrlSets, CURRENTSET,'gui','off','savenew',['CtrlSets_Epoched'],'setname','CtrlSets');
+end
+
+if isempty(BistSets)
+    [ALLEEG EEG CURRENTSET] = pop_newset(ALLEEG, BistSets, CURRENTSET,'gui','off','savenew',['BistSets_noEpoch'],'setname','BistSets');
+else
+    [ALLEEG EEG CURRENTSET] = pop_newset(ALLEEG, BistSets, CURRENTSET,'gui','off','savenew',['BistSets_Epoched'],'setname','BistSets');
+end
 eeglab redraw
 
 
-%%
+%% Here and below may need to be done manually? Confirm
 
 
 stimType = 'stim_onset';      % your stimulation event type/label
@@ -84,7 +113,7 @@ for ep = 1:EEG.trials
 end
 
 
-%%
+%% Remove stimulation periods for ERPLAB compatibility
 
 stimEvents = find(strcmp({EEG.event.type}, 'stim_onset'));
 RafterStim = stimEvents + 2;
@@ -92,7 +121,7 @@ rmRanges = [];
 for i = 1:length(stimEvents)
     startSamp = EEG.event(stimEvents(i)).latency;
     %endSamp = startSamp + stimDuration * EEG.srate;
-    endSamp = EEG.event(RafterStim(i)).latency
+    endSamp = EEG.event(RafterStim(i)).latency;
     rmRanges = [rmRanges; startSamp endSamp];
 end
 
